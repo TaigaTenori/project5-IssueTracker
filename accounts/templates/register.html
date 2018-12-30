@@ -2,5 +2,11 @@
 
 {% block title %} Register {% endblock %}
 {% block content %}
-    Display a registration form
+    <form method="POST">
+        {% csrf_token %}
+        <ul>
+        {{ form.as_p }}
+        </ul>
+        <button type='submit'> Register</button>
+    </form>
 {% endblock %}

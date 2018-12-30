@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import auth, messages
-from accounts.forms import UserLoginForm
+from accounts.forms import UserLoginForm, UserRegistrationForm
 
 # Create your views here.
 
@@ -34,4 +34,12 @@ def logout(request):
     return render(request, 'logout.html')
 
 def register(request):
-    return render(request, 'register.html')
+    form = UserRegistrationForm(request.POST if request.POST else None)
+    if request.method == "POST":
+        if form.is_valid():
+            messages.success(request, "Registration successfull. You can now login with your name and password.")
+            form.save()
+            return redirect('login')
+        else:
+            messages.error(request, 'Registration failed. Check the errors below.')
+    return render(request, 'register.html', {'form': form})
