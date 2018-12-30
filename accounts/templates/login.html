@@ -2,5 +2,10 @@
 
 {% block title %} Login {% endblock %}
 {% block content %}
-    Display a login form
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Login</button>
+    </form>
+    
 {% endblock %}
