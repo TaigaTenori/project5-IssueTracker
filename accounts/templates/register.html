@@ -3,6 +3,7 @@
 
 {% block title %} Register {% endblock %}
 {% block content %}
+    <div style="width: 30%; margin-left: 30px">
     <form method="POST" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}
@@ -10,4 +11,5 @@
             <button type='submit' class="btn btn-primary"> Register</button>
         {% endbuttons %}
     </form>
+    </div>
 {% endblock %}
