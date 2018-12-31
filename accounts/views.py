@@ -42,4 +42,5 @@ def register(request):
             return redirect('login')
         else:
             messages.error(request, 'Registration failed. Check the errors below.')
+    
     return render(request, 'register.html', {'form': form})
