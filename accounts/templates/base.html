@@ -16,18 +16,17 @@
     </head>
     
     <body>
-        <navbar>
-            <ul>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-                
+        <ul class="nav nav-pills">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            
 
-            </ul>
-        </navbar>
+        </ul>
+
         {%if messages %}
         <hr/>
         <div class="messages">
