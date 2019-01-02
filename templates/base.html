@@ -1,6 +1,7 @@
 <html>
     <head>
-
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <title> 
             {% block title %}
             {% endblock %}
@@ -16,29 +17,39 @@
     </head>
     
     <body>
-        <ul class="nav nav-pills">
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-            {% endif %}
-            
-
-        </ul>
-
-        {%if messages %}
-        <hr/>
-        <div class="messages">
-            {% for message in messages %}
-                <span> {{ message }} </span>
-            {% endfor %}
+        <div class="grid-container">
+            <div class="item1">
+                <ul class="nav nav-pills">
+                    {% if user.is_authenticated %}
+                        <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
+                        <li role="presentation"><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>       
+            </div>
+            <div class="item2">Left</div>
+            <div class="item3">
+                {%if messages %}
+                <hr/>
+                <div class="messages">
+                    {% for message in messages %}
+                        <span> {{ message }} </span>
+                    {% endfor %}
+                </div>
+                <hr/>
+                {% endif %}
+                <div class="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>                
+                
+            </div>  
+            <div class="item4">Latest issues</div>
+            <div class="item5">Footer</div>
         </div>
-        <hr/>
-        {% endif %}
-        <div class="content">
-            {% block content %}
-            {% endblock %}
-        </div>
+
+
+
     </body>
 </html>
