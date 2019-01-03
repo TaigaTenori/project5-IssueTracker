@@ -4,7 +4,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 
 # Create your views here.
 
-def acccounts_index(request):
+def accounts_index(request):
     return render(request, 'index.html')
     
 def login(request):

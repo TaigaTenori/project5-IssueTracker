@@ -18,7 +18,7 @@
     
     <body>
         <div class="grid-container">
-            <div class="item1">
+            <div class="grid-menu">
                 <ul class="nav nav-pills">
                     {% if user.is_authenticated %}
                         <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
@@ -28,8 +28,8 @@
                     {% endif %}
                 </ul>       
             </div>
-            <div class="item2">Left</div>
-            <div class="item3">
+            <div class="grid-left">Left</div>
+            <div class="grid-main">
                 {%if messages %}
                 <hr/>
                 <div class="messages">
@@ -45,8 +45,8 @@
                 </div>                
                 
             </div>  
-            <div class="item4">Latest issues</div>
-            <div class="item5">Footer</div>
+            <div class="grid-right">Latest issues</div>
+            <div class="grid-footer">Footer</div>
         </div>
 
 

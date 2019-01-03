@@ -1,8 +1,8 @@
-.item1 { grid-area: header; }
-.item2 { grid-area: left; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
+.grid-menu { grid-area: header; }
+.grid-left { grid-area: left;  }
+.grid-main { grid-area: main; }
+.grid-right { grid-area: right; }
+.grid-footer { grid-area: footer; }
 
 .grid-container {
   display: grid;
@@ -10,7 +10,11 @@
     'header header header header header header'
     'left main main main right right'
     'left footer footer footer footer footer';
+    
+  grid-template-columns: 120px 2fr 2fr 2fr 1fr 2fr;
+  grid-template-rows: 20vh 70vh 10vh;
   grid-gap: 10px;
+  
   background-color: white;
   padding: 10px;
   color: white;
