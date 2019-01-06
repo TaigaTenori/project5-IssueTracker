@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for usr in users %}
+        <p> {{ usr.username }} <span style="color: yellow;"> joined: </span> {{ usr.date_joined }}</p>
+    {% endfor %}
+    <hr/>
+    {% for issue in issues %}
+        <span style="color: green">{{ issue.name }} </span>
+        <p> {{ issue.body }} </p>
+        <p> {{ issue.author }}</p>
+        <hr/>
+    {% endfor %}
+    
+{% endblock content %}
