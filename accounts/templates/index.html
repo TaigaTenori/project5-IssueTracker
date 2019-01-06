@@ -1,15 +1,13 @@
-<html>
-    <head>
-        <title> Accounts index </title>
-    </head>
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %} Profile {% endblock %}
+{% block content %}
     
-    <body>
-        <navbar>
-            <ul>
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-            </ul>
-        </navbar>
-    </body>
-</html>
+    {% if user.is_authenticated %}
+        Name: {{ user.username }}
+        <br/>
+        Created date: {{ user.date_joined }}
+    {% else %}
+        Log in to see profile information
+    {% endif %}
+{% endblock %}

@@ -20,7 +20,7 @@ from accounts.views import accounts_index, logout, login, register
 urlpatterns = [
     path('', accounts_index),
     path('admin/', admin.site.urls),
-    path('accounts/', accounts_index), #display profile if logged in?
+    path('accounts/', accounts_index, name='profile'), #display profile if logged in?
     path('accounts/logout', logout, name='logout'),
     path('accounts/login', login, name='login'),
     path('accounts/register', register, name='register'),
