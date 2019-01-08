@@ -10,3 +10,22 @@ class IssueModel(models.Model):
     name = models.CharField(max_length=144)
     body = models.TextField(blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    created = models.DateTimeField(auto_now=True)
+    type = {
+        ('BUG', 'Bug'),
+        ('FEATURE', 'Feature') 
+    }
+    
+    upvotes = models.IntegerField(default=0)
+    
+
+    progress_choices = (
+        ('NOT_STARTED', 'Inactive'),
+        ('IN_PROGRESS', 'In progress'),
+        ('FINISHED', 'Done')
+    )
+    progress = models.CharField(
+        max_length = 12,
+        default = 'NOT_STARTED'
+    )

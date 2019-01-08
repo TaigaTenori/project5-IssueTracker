@@ -6,7 +6,7 @@ from issues.models import IssueModel
 def issues_list(request):
     users = User.objects.all()
     
-    #post = IssueModel(name=" Another Example topic", body=" And yet another example body text", author=users[0])
+    #post = IssueModel(name=" Hmmm", body=" Very much much better man", author=users[0])
     #post.save()
     issues = IssueModel.objects.all()
     return render(request, 'issues.html', { 'users': users, 'issues':issues})
