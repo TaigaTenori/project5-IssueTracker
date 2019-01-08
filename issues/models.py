@@ -12,11 +12,15 @@ class IssueModel(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     
     created = models.DateTimeField(auto_now=True)
-    type = {
+    type_choices = {
         ('BUG', 'Bug'),
         ('FEATURE', 'Feature') 
     }
-    
+    type = models.CharField(
+        max_length = 7,
+        choices = type_choices,
+        default = 'BUG'
+    )
     upvotes = models.IntegerField(default=0)
     
 
