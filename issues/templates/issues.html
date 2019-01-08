@@ -8,7 +8,7 @@
     {% for issue in issues %}
         <span style="color: green">{{ issue.name }} </span>
         <p> {{ issue.body }} </p>
-        <p> {{ issue.author }}</p>
+        <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
         <hr/>
     {% endfor %}
     
