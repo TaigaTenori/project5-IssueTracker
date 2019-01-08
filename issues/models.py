@@ -8,7 +8,7 @@ class IssueModel(models.Model):
     """ A basic model for issues (posts) """
     
     name = models.CharField(max_length=144)
-    body = models.TextField(blank=True)
+    body = models.TextField(blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     
     created = models.DateTimeField(auto_now=True)

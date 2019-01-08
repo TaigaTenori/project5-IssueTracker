@@ -12,7 +12,7 @@
     'left footer footer footer footer footer';
     
   grid-template-columns: 120px 2fr 2fr 2fr 1fr 2fr;
-  grid-template-rows: 20vh 70vh 10vh;
+  grid-template-rows: 20vh auto 10vh;
   grid-gap: 10px;
   
   background-color: white;
