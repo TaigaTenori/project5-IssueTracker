@@ -53,4 +53,4 @@ def accounts_profile(request, request_username):
     user = get_object_or_404(User, username = request_username)
 
     
-    return render(request, 'index.html', { 'user': user })
+    return render(request, 'profile.html', { 'profile_user': user })

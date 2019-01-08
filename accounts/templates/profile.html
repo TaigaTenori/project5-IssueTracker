@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+    
+        Name: {{ profile_user.username }}
+        <br/>
+        Created date: {{ profile_user.date_joined }}
+
+{% endblock %}
