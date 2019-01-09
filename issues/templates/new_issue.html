@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% block title %} New Issue {% endblock %}
 {% block content %}
+    <div style="width: 30%; margin-left: 30px">
     <form method="POST" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type='submit' class="btn btn-primary"> Post Issue</button>
+        {% endbuttons %}
     </form>
-    
-{% endblock content %}
+    </div>
+{% endblock %}

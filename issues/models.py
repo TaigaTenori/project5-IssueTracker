@@ -9,7 +9,7 @@ class IssueModel(models.Model):
     
     name = models.CharField(max_length=144)
     body = models.TextField(blank=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.CharField(max_length=50, editable=False)
     
     created = models.DateTimeField(auto_now=True)
     type_choices = {
