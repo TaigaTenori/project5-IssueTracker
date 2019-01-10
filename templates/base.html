@@ -63,7 +63,14 @@
                 </div>                
                 
             </div>  
-            <div class="grid-right">Latest issues</div>
+            <div class="grid-right"><h3>Latest issues</h3><br/>
+                {% for issue in issues %}
+                    <p style="text-align: left; margin-left: 30%">
+                        <a href="issues/{{issue.id}}">{{ issue.name|truncatechars:20 }}</a> 
+                    </p>
+                {% endfor %}
+            
+            </div>
             <div class="grid-footer"></div>
         </div>
 
