@@ -3,7 +3,7 @@
 {% block title %} Login {% endblock %}
 {% block content %}
     {% if not user.is_authenticated %}
-        <div style="width: 30%; margin-left: 30px">
+        <div class="form-div">
         <form method="POST" class="form">
             {% csrf_token %}
             {% bootstrap_form form %}

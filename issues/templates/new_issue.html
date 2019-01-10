@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 {% block title %} New Issue {% endblock %}
 {% block content %}
-    <div style="width: 30%; margin-left: 30px">
+    <div class="form-div">
     <form method="POST" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}

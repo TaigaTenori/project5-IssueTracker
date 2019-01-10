@@ -13,21 +13,25 @@
     
   grid-template-columns: 120px 2fr 2fr 2fr 1fr 2fr;
   grid-template-rows: 20vh auto 10vh;
-  grid-gap: 10px;
+  grid-gap: 5px;
   
   background-color: white;
   padding: 10px;
-  color: white;
+  
   height: 100vh;
 }
 
 .grid-container > div {
-  background-color: rgb(44, 77, 104);
+  background-color: white;
   text-align: center;
   padding: 20px 0;
 }
 
-
+.form-div {
+  width: 60%;
+  margin: 0 auto;
+  
+}
 
 
 

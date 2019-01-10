@@ -22,6 +22,8 @@
     <body>
         <div class="grid-container">
             <div class="grid-menu">
+                
+                <!-- left menu -->
                 <ul class="nav nav-pills">
                     <li role="presentation"><a href="{% url 'home' %}">Home</a></li>
                     {% if user.is_authenticated %}
@@ -31,9 +33,20 @@
                         <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
                         <li role="presentation"><a href="{% url 'register' %}">Register</a></li>
                     {% endif %}
-                </ul>       
+                </ul> 
+                <br/>
+                <!-- right hand side menu -->
+                <div class="well well-sm bg-dark">
+                 <ul class="nav nav-pills">
+                    {% if user.is_authenticated %}
+                         <li role="presentation"><a href="{% url 'new_issue' %}">New Issue</a></li>
+                    {% endif %}
+                </ul>   
+                </div>
+            
             </div>
-            <div class="grid-left">Left</div>
+            
+            <div class="grid-left"></div>
             <div class="grid-main">
                 {%if messages %}
                 <hr/>
@@ -51,7 +64,7 @@
                 
             </div>  
             <div class="grid-right">Latest issues</div>
-            <div class="grid-footer">Footer</div>
+            <div class="grid-footer"></div>
         </div>
 
 
