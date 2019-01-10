@@ -34,3 +34,8 @@ def new_issue(request):
     
     return render(request, 'new_issue.html', {'form': form })
     
+def issue_details(request, pk):
+    
+    issue = IssueModel.objects.get(pk=pk)
+    
+    return render(request, 'issue_details.html', {'issue': issue})

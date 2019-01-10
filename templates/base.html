@@ -64,9 +64,9 @@
                 
             </div>  
             <div class="grid-right"><h3>Latest issues</h3><br/>
-                {% for issue in issues %}
+                {% for issue in latest_issues %}
                     <p style="text-align: left; margin-left: 30%">
-                        <a href="issues/{{issue.id}}">{{ issue.name|truncatechars:20 }}</a> 
+                        <a href="{% url 'issue_details' issue.id %}">{{ issue.name|truncatechars:20 }}</a> 
                     </p>
                 {% endfor %}
             
