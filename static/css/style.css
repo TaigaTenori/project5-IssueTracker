@@ -40,3 +40,12 @@ body {
     top: 0 !important;
 
 }
+
+a.issue_remove_link {
+  color: grey;
+  text-decoration: none;
+}
+a.issue_remove_link:hover {
+  color: red;
+  text-decoration: none;
+}

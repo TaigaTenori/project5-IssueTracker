@@ -8,11 +8,15 @@ from django.contrib import messages
 def add_upvote(request, issue_id, issue_name):
     cart = request.session.get('cart', {})
     
+    if issue_id in cart:
+        messages.add_message(request, messages.ERROR, "This upvote is already in your basket.")
+        return redirect(reverse('view_cart'))
+    
     cart[issue_id] = issue_name
     
     request.session['cart'] = cart
     
-    messages.add_message(request, messages.INFO, 'This upvote has been added to your cart.')
+    messages.add_message(request, messages.INFO, 'This upvote has been added to your basket.')
     
     return redirect(reverse('home'))
     
