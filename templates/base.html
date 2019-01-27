@@ -40,6 +40,7 @@
                  <ul class="nav nav-pills">
                     {% if user.is_authenticated %}
                          <li role="presentation"><a href="{% url 'new_issue' %}">New Issue</a></li>
+                         <li role="presentation"><a href="{% url 'view_cart' %}">Cart value: €{{ total }}  Product count: {{ product_count }} </a></li>
                     {% endif %}
                 </ul>   
                 </div>

@@ -4,6 +4,9 @@
 
     <h2> Detailed View</h2>
     <span style="color: green">{{ issue.name }} </span>
+    {% if issue.type == 'FEATURE' %}
+        <span style="color: pink"> <a href=" {% url 'add_upvote' issue.id %}"> upvote </a> </span>
+    {% endif %}
     <p> {{ issue.body }} </p>
     <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
     <hr/>

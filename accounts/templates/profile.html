@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-{% block title %} Profile {% endblock %}
+{% block title %} Profile: {{ profile_user.username }} {% endblock %}
 {% block content %}
     
         Name: {{ profile_user.username }}
@@ -10,6 +10,9 @@
         <div style="width: 60%">
                 {% for issue in issues %}
                         <p><a href="{% url 'issue_details' issue.id %}"> {{ issue.name }} </a></p>
+                        
+                {% empty %}
+                        <p> This user has not created any issues. </p>
                 {% endfor %}
         </div>
 {% endblock %}

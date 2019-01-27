@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from accounts.views import accounts_index, logout, login, register, accounts_profile
 from issues.views import issues_list, new_issue, issue_details
+from cart.views import add_upvote, view_cart, cart_remove
 
 urlpatterns = [
     path('', accounts_index),
@@ -29,4 +30,7 @@ urlpatterns = [
     path('issues/', issues_list, name='home'),
     path('issues/new/', new_issue, name='new_issue'),
     path('issues/<pk>', issue_details, name='issue_details'),
+    path('cart/add_upvote/<issue_id>', add_upvote, name='add_upvote'),
+    path('cart/', view_cart, name='view_cart'),
+    path('cart/remove/<issue_id>', cart_remove, name='cart_remove'),
 ]
