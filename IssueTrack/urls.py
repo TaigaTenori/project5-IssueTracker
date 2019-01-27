@@ -30,7 +30,7 @@ urlpatterns = [
     path('issues/', issues_list, name='home'),
     path('issues/new/', new_issue, name='new_issue'),
     path('issues/<pk>', issue_details, name='issue_details'),
-    path('cart/add_upvote/<issue_id>', add_upvote, name='add_upvote'),
+    path('cart/add_upvote/<issue_id>/<issue_name>', add_upvote, name='add_upvote'),
     path('cart/', view_cart, name='view_cart'),
     path('cart/remove/<issue_id>', cart_remove, name='cart_remove'),
 ]

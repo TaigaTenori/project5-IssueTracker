@@ -2,8 +2,10 @@
 {% load bootstrap3 %}
 {% block title %} Profile {% endblock %}
 {% block content %}
-    
-    {% for issue in cart_issues %}
-        <p> {{ issue.name }} <a href=" {% url 'cart_remove' issue.id %}"> remove</a></p>
+    <h3> Cart contents:</h3>
+    {% for issue_id, issue_name in cart.items %}
+        <p> {{ issue_name }} <a href=" {% url 'cart_remove' issue_id %}"> remove</a></p>
+    {% empty %}
+       Your cart is empty.
     {% endfor %}
 {% endblock %}

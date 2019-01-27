@@ -5,12 +5,10 @@ from django.contrib import messages
 
 # Create your views here.
 
-def add_upvote(request, issue_id):
+def add_upvote(request, issue_id, issue_name):
     cart = request.session.get('cart', {})
     
-    #quantity = request.POST.get('quantity')
-    
-    cart[issue_id] = cart.get(issue_id, 1)
+    cart[issue_id] = issue_name
     
     request.session['cart'] = cart
     
@@ -22,13 +20,13 @@ def view_cart(request):
     cart = request.session.get('cart', {})
     
     # store issue names that the user wants to upvote by paying
-    cart_issues = []
-    
+
+    """   
     for issue_id, quantity in cart.items():
         issue = get_object_or_404(IssueModel, pk=issue_id)
         cart_issues.append(issue)
-    
-    return render(request, 'view_cart.html', { 'cart_issues': cart_issues })
+    """   
+    return render(request, 'view_cart.html', { 'cart': cart })
     
 def cart_remove(request, issue_id):
     cart = request.session.get('cart', {})
