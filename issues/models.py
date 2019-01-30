@@ -10,6 +10,7 @@ class IssueModel(models.Model):
     name = models.CharField(max_length=144)
     body = models.TextField(blank=False)
     author = models.CharField(max_length=50, editable=False) # can also use : exclude = ['author']
+    price = 5
     
     created = models.DateTimeField(auto_now=True)
     type_choices = {

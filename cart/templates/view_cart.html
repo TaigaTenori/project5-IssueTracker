@@ -5,6 +5,8 @@
     <h3> Cart contents:</h3>
     {% for issue_id, issue_name in cart.items %}
         <p> <a href=" {% url 'issue_details' issue_id %}"> {{ issue_name }} </a> - [<a class="issue_remove_link" href=" {% url 'cart_remove' issue_id %}"> remove</a> ]</p>
+        
+        <a href="{% url 'checkout' %}">Checkout now</a>
     {% empty %}
        Your cart is empty.
     {% endfor %}

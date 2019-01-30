@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap3 %}
+{% block head_js %}
+    <script type="text/javascript" src="https://js.stripe.com/v2"></script>
+    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+    <script type="text/javascript">
+        Stripe.publishableKey = 'pk_test_PvWCEQru86tbjJubAari1b4V';
+        Stripe.setPublishableKey('pk_test_PvWCEQru86tbjJubAari1b4V');
+    </script>
+
+{% endblock head_js %}
+
+{% block content %}
+
+
+{% block latest_issues %}{% endblock latest_issues %}
+<div class="row row-flex">
+    
+    {% for item, name in cart.items %}
+        <p> {{ name }} <span style="color: green"> 5 eur </span></p>
+    {% endfor %}
+    
+</div>
+
+{% if total > 0 %}
+    <div class="row">
+        <p>Total: <span class="glyphicon glyphicon-euro" aira-hidden="true"> {{ total }} </span></p>
+        
+    </div>
+    <form role="form" method="Post" id="payment-form" action="{% url 'checkout' %}">
+        <legend> Payment Details</legend>
+        <div id="credit-card-errors" style="">
+            <div class="alert-message block-message error" id="stripe-error-message">
+                
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            {% bootstrap_form order_form %}
+            
+        </div>
+        <div class="form-group col-md-6">
+            {% bootstrap_form payment_form %}
+            
+        </div>
+        <div class="form-group col-md-12">
+            <input class="btn btn-primary" id="submit_payment_btn" name="commit" type='submit' value="Submit"
+        </div>
+        {% csrf_token %}
+    </form>
+{% else %}
+    Add upvotes to feature requests to your basket before checking out.
+{% endif %}
+{% endblock %}

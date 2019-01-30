@@ -17,6 +17,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        {% block head_js %}
+        
+        {% endblock head_js %}
+    
     </head>
     
     <body>
@@ -67,7 +71,8 @@
                     {% endblock %}
                 </div>                
                 
-            </div>  
+            </div>
+            {% block latest_issues %}
             <div class="grid-right"><h3>Latest issues</h3><br/>
                 {% for issue in latest_issues %}
                     <p style="text-align: left; margin-left: 30%">
@@ -76,6 +81,7 @@
                 {% endfor %}
             
             </div>
+            {% endblock latest_issues %}
             <div class="grid-footer"></div>
         </div>
 

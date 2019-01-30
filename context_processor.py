@@ -12,4 +12,4 @@ def cart_contents(request):
     total = len(cart) * 5
     product_count = len(cart)
     
-    return {'cart_items': cart, 'total': total, 'product_count': product_count}
+    return {'cart': cart, 'cart_items': cart, 'total': total, 'product_count': product_count}
