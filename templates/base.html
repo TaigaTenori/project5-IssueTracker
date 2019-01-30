@@ -15,7 +15,7 @@
         
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
     
@@ -40,7 +40,11 @@
                  <ul class="nav nav-pills">
                     {% if user.is_authenticated %}
                          <li role="presentation"><a href="{% url 'new_issue' %}">New Issue</a></li>
-                         <li role="presentation"><a href="{% url 'view_cart' %}">Cart value: €{{ total }}  Product count: {{ product_count }} </a></li>
+                         <li role="presentation">
+                             <a href="{% url 'view_cart' %}">
+                             <i class="fa fa-shopping-cart"></i> Cart value: €{{ total }}  Product count: {{ product_count }} 
+                             </a>
+                        </li>
                     {% endif %}
                 </ul>   
                 </div>
