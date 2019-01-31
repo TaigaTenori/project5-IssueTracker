@@ -6,7 +6,13 @@
     {% endfor %}
     <hr/>
     {% for issue in issues %}
-        <span style="color: green">{{ issue.name }} </span>
+        {% if issue.type == "BUG" %}
+            <i class="fab fa-font-awesome"></i>
+        {% else %}
+            <i class="fab fa-angellist"></i>
+        {% endif %}
+        
+        <span style="color: green">{{ issue.name }} </span> | Upvoted <span style="color: #77A4DE">{{ issue.upvotes }} times </span>
         <p> {{ issue.body }} </p>
         <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
         <hr/>

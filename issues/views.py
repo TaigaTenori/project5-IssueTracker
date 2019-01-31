@@ -38,13 +38,16 @@ def new_issue(request):
 def issue_details(request, pk):
     
     
-    issue = IssueModel.objects.get(pk=pk)
+    issue = IssueModel.objects.get(pk = pk)
     upvoted = UpvoteModel.objects.filter(user = request.user, product = issue)
     return render(request, 'issue_details.html', {'issue': issue, 'upvoted': upvoted})
     
 @login_required()
 def add_bug_upvote(request, issue_id):
-    upvote = UpvoteModel(product = IssueModel.objects.get(pk=issue_id), user = request.user)
+    issue = IssueModel.objects.get(pk = issue_id)
+    issue.upvotes += 1
+    issue.save()
+    upvote = UpvoteModel(product = issue , user = request.user)
     upvote.save()
     
     messages.add_message(request, messages.INFO, 'The issue has been upvoted successfully.')
