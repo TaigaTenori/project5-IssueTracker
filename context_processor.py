@@ -1,8 +1,8 @@
 from issues.models import IssueModel
-from django.shortcuts import get_object_or_404
+
 
 def latest_issues(request):
-    issues = IssueModel.objects.order_by('created')[:10]
+    issues = IssueModel.objects.order_by('-created')[:10]
     return {'latest_issues': issues }
     
 def cart_contents(request):

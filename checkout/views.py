@@ -44,7 +44,11 @@ def checkout(request):
                 )
                 
                 for id, quant in cart.items():
-                    upvote = UpvoteModel(user = request.user, product = get_object_or_404(IssueModel, pk=id))
+                    issue = get_object_or_404(IssueModel, pk=id)
+                    issue.upvotes += 1
+                    issue.save()
+                    
+                    upvote = UpvoteModel(user = request.user, product = issue)
                     upvote.save()
                 
             except stripe.error.CardError:
