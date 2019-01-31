@@ -6,13 +6,23 @@
         Name: {{ profile_user.username }}
         <br/>
         Created date: {{ profile_user.date_joined }}
-        <h2> Issues created by {{ profile_user.username }}</h2>
+        <h3> Issues created by {{ profile_user.username }}</h3>
         <div style="width: 60%">
                 {% for issue in issues %}
                         <p><a href="{% url 'issue_details' issue.id %}"> {{ issue.name }} </a></p>
                         
                 {% empty %}
                         <p> This user has not created any issues. </p>
+                {% endfor %}
+        </div>
+        <hr/>
+        <h3> Issues upvoted by {{ profile_user.username }}</h3>
+        <div style="width: 60%">
+                {% for upvote in upvotes %}
+                        <p><a href="{% url 'issue_details' upvote.product.id %}"> {{ upvote.product.name }} </a></p>
+                        
+                {% empty %}
+                        <p> This user hasn't upvoted anything. </p>
                 {% endfor %}
         </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 import stripe
 from .forms import MakePaymentForm, OrderForm
-from issues.models import IssueModel
+from issues.models import IssueModel, UpvoteModel
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -34,7 +34,7 @@ def checkout(request):
                     product = product, 
                     )
                 order_line_item.save()
-                
+            
             try:
                 customer = stripe.Charge.create(
                     amount = int(total * 100),
@@ -42,6 +42,11 @@ def checkout(request):
                     description = request.user.email,
                     card = payment_form.cleaned_data['stripe_id'],
                 )
+                
+                for id, quant in cart.items():
+                    upvote = UpvoteModel(user = request.user, product = get_object_or_404(IssueModel, pk=id))
+                    upvote.save()
+                
             except stripe.error.CardError:
                 messages.error(request, "Your card was declined!")
                 

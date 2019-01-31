@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
-from issues.models import IssueModel
+from issues.models import IssueModel, UpvoteModel
 from issues.forms import IssueCreationForm
 # Create your views here.
 
@@ -36,6 +36,7 @@ def new_issue(request):
     
 def issue_details(request, pk):
     
-    issue = IssueModel.objects.get(pk=pk)
     
-    return render(request, 'issue_details.html', {'issue': issue})
+    issue = IssueModel.objects.get(pk=pk)
+    upvoted = UpvoteModel.objects.filter(user = request.user, product = issue)
+    return render(request, 'issue_details.html', {'issue': issue, 'upvoted': upvoted})

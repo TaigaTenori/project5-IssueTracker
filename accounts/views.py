@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth.models import User
-from issues.models import IssueModel
+from issues.models import IssueModel, UpvoteModel
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -54,5 +54,5 @@ def accounts_profile(request, request_username):
     user = get_object_or_404(User, username = request_username)
     
     issues = IssueModel.objects.filter(author = request_username)[:10]
-    
-    return render(request, 'profile.html', { 'profile_user': user, 'issues': issues })
+    upvotes = UpvoteModel.objects.filter(user = get_object_or_404(User, username = request_username))
+    return render(request, 'profile.html', { 'profile_user': user, 'issues': issues, 'upvotes': upvotes })

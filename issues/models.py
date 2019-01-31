@@ -34,3 +34,8 @@ class IssueModel(models.Model):
         max_length = 12,
         default = 'NOT_STARTED'
     )
+    
+class UpvoteModel(models.Model):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(IssueModel, null=False, on_delete=models.CASCADE)
+        
