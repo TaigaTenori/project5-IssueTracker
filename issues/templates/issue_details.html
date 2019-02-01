@@ -2,8 +2,8 @@
 
 {% block content %}
 
-    <h2> Detailed View</h2>
-    <span style="color: green">{{ issue.name }} </span>
+    <h2 style="margin-bottom: 20px"> Detailed View</h2>
+    <span style="font-size: 1.2em; color: green">{{ issue.name }} </span>
     {% if not upvoted %}
         {% if issue.type == 'FEATURE' %}
             <span style="color: pink"> <a href=" {% url 'add_upvote' issue.id issue.name %}"> upvote </a> </span>
@@ -11,7 +11,7 @@
             <span style="color: pink"> <a href=" {% url 'add_bug_upvote' issue.id %}"> upvote </a> </span>
         {% endif %}
     {% endif %}
-    <p> {{ issue.body }} </p>
+    <pre style="text-align: left;padding-left: 25px;padding-top: 15px; padding-bottom: 15px;margin: 0 auto; width: 60%"> {{ issue.body }} </pre>
     <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
     <hr/>
     <h3> Comments </h3>

@@ -5,17 +5,32 @@
         <p> {{ usr.username }} <span style="color: yellow;"> joined: </span> {{ usr.date_joined }}</p>
     {% endfor %}
     <hr/>
+    <div class="col-md-9 col-md-offset-3">
     {% for issue in issues %}
-        {% if issue.type == "BUG" %}
-            <i class="fab fa-font-awesome"></i>
-        {% else %}
-            <i class="fab fa-angellist"></i>
-        {% endif %}
         
-        <span style="color: green">{{ issue.name }} </span> | Upvoted <span style="color: #77A4DE">{{ issue.upvotes }} times </span>
-        <p> {{ issue.body }} </p>
-        <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
-        <hr/>
+        
+        <div class="panel panel-primary">
+
+        
+        <div class="panel-heading">
+            {% if issue.type == "BUG" %}
+                <i class="fab fa-font-awesome"></i>
+            {% else %}
+                <i class="fab fa-angellist"></i>
+            {% endif %}
+            <span style="color: white">{{ issue.name }} </span> <span style="float: right;color: #77A4DE">Upvotes: {{ issue.upvotes }} </span>
+        </div>
+        <div class="panel-body">
+            <p> {{ issue.body }} </p>
+            
+        </div>
+        <div class="panel-footer" style="text-align: left">
+            <span style="margin-left:0">Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></span>
+            <span style="float:right;"> <a href=" {% url 'issue_details' issue.id %}">View Details </a></span>
+        </div>
+        
+        </div>
+        
     {% endfor %}
-    
+    </div>
 {% endblock content %}
