@@ -39,7 +39,9 @@ def issue_details(request, pk):
     
     
     issue = IssueModel.objects.get(pk = pk)
-    upvoted = UpvoteModel.objects.filter(user = request.user, product = issue)
+    upvoted = True
+    if request.user.is_authenticated:
+        upvoted = UpvoteModel.objects.filter(user = request.user, product = issue)
     return render(request, 'issue_details.html', {'issue': issue, 'upvoted': upvoted})
     
 @login_required()
