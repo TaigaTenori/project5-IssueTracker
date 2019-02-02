@@ -2,23 +2,24 @@
 
 {% block content %}
 
-    <div class="col-md-9 col-md-offset-3">
+    <div class="row " style="text-align: center; background-color: white;width: 100%">
+        <div class="content " style=" margin: 0 auto; width: 70%">
     {% for issue in issues %}
         
         
-        <div class="panel panel-primary">
+        <div class="panel panel-primary lighten">
 
         
-        <div class="panel-heading">
+        <div class="panel-heading" style="text-align: left">
             {% if issue.type == "BUG" %}
                 <i class="fab fa-font-awesome"></i>
             {% else %}
                 <i class="fab fa-angellist"></i>
             {% endif %}
-            <span style="color: white">{{ issue.name }} </span> <span style="float: right;color: #77A4DE">Upvotes: {{ issue.upvotes }} </span>
+            <span style="color: white;">{{ issue.name }} </span> <span style="float: right;color: #77A4DE">Upvotes: {{ issue.upvotes }} </span>
         </div>
         <div class="panel-body">
-            <p> {{ issue.body }} </p>
+            <p> {{ issue.body|linebreaks|truncatechars:50 }} {% lorem 1 p %} </p>
             
         </div>
         <div class="panel-footer" style="text-align: left">
@@ -27,7 +28,8 @@
         </div>
         
         </div>
-        
+
     {% endfor %}
+    </div>
     </div>
 {% endblock content %}

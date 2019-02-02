@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
-
+{% block title %} {{ issue.name }} {% endblock title %}
 {% block content %}
 
-    <h2 style="margin-bottom: 20px"> Detailed View</h2>
-    <span style="font-size: 1.2em; color: green">{{ issue.name }} </span>
-    {% if not upvoted %}
-        {% if issue.type == 'FEATURE' %}
-            <span style="color: pink"> <a href=" {% url 'add_upvote' issue.id issue.name %}"> upvote </a> </span>
-        {% else %}
-            <span style="color: pink"> <a href=" {% url 'add_bug_upvote' issue.id %}"> upvote </a> </span>
-        {% endif %}
-    {% endif %}
-    <pre style="text-align: left;padding-left: 25px;padding-top: 15px; padding-bottom: 15px;margin: 0 auto; width: 60%"> {{ issue.body }} </pre>
-    <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
+    <h2 style="margin-top: 0; margin-bottom: 7vh"> Detailed View</h2>
+    <div class="panel panel-primary lighten">
+        <div class="panel-heading" style="text-align: left">
+            {{ issue.name }} 
+            {% if not upvoted %}
+                {% if issue.type == 'FEATURE' %}
+                    <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                {% else %}
+                    <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="panel-body">
+            {{ issue.body|linebreaks }}
+        </div>
+        <div class="panel-footer">
+            <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
+        </div>
+    </div>
     <hr/>
     <h3> Comments </h3>
-    
+    <a href=""> Add comment</a>
 {% endblock content %}

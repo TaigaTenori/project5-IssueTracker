@@ -12,7 +12,7 @@ class IssueModel(models.Model):
     author = models.CharField(max_length=50, editable=False) # can also use : exclude = ['author']
     price = 5
     
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True) # when it was set to auto_now it'd update the 'created' field every time an issue object was save()d
     type_choices = {
         ('BUG', 'Bug Report'),
         ('FEATURE', 'Feature Request') 
