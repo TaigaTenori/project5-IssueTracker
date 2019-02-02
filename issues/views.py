@@ -5,6 +5,7 @@ from django.contrib import auth, messages
 from issues.models import IssueModel, UpvoteModel
 from issues.forms import IssueCreationForm
 from comments.forms import CommentForm
+from comments.models import Comment
 # Create your views here.
 
 def issues_list(request):
@@ -41,12 +42,12 @@ def issue_details(request, pk):
     
     issue = IssueModel.objects.get(pk = pk)
     upvoted = True
-    
+    comments = Comment.objects.filter(issue = issue)
     form = CommentForm(None)
     if request.user.is_authenticated:
         upvoted = UpvoteModel.objects.filter(user = request.user, product = issue)
         
-    return render(request, 'issue_details.html', {'issue': issue, 'upvoted': upvoted, 'comment_form': form})
+    return render(request, 'issue_details.html', {'issue': issue, 'upvoted': upvoted, 'comment_form': form, 'comments': comments})
     
 @login_required()
 def add_bug_upvote(request, issue_id):

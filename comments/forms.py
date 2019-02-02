@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
     
-    text = forms.CharField(label="Enter your comments (Max 1200 characters)", widget=forms.Textarea)
+    text = forms.CharField(label="Enter your comment (Max 1200 characters)", widget=forms.Textarea)
+
 
     class Meta:
         model = Comment

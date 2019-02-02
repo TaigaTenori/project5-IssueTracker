@@ -19,6 +19,8 @@ from accounts.views import accounts_index, logout, login, register, accounts_pro
 from issues.views import issues_list, new_issue, issue_details, add_bug_upvote
 from cart.views import add_upvote, view_cart, cart_remove
 from checkout.views import checkout
+from comments.views import add_comment
+
 
 urlpatterns = [
     path('', accounts_index),
@@ -35,5 +37,6 @@ urlpatterns = [
     path('cart/add_upvote/<issue_id>/<issue_name>', add_upvote, name='add_upvote'),
     path('cart/', view_cart, name='view_cart'),
     path('cart/remove/<issue_id>', cart_remove, name='cart_remove'),
-    path('checkout/', checkout, name = 'checkout')
+    path('checkout/', checkout, name = 'checkout'),
+    path('comments/add_comment/<issue_id>', add_comment, name = 'add_comment'),
 ]
