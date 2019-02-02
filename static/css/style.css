@@ -49,3 +49,7 @@ a.issue_remove_link:hover {
   color: red;
   text-decoration: none;
 }
+
+.rounded {
+  border-radius: 10px;
+}

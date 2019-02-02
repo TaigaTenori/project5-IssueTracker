@@ -25,13 +25,23 @@
     <hr/>
     <h3> Comments </h3>
     {% for comment in comments %}
-        <p> {{ comment.author }}: {{ comment.text }} </p>
+        <div class="row rounded" style="margin-top: 10px">
+        {% if forloop.counter|divisibleby:2 %}
+            <div class="col-md-3 bg-success">{{ comment.author }}</div><div class="bg-success text-left col-md-9"> {{ comment.text }}</div> 
+        {% else %}
+            <div class="col-md-3 bg-info">{{ comment.author }}</div><div class="text-left bg-info col-md-9"> {{ comment.text }}</div> 
+        {% endif %}
+        </div>
     {% endfor %}
+    <hr/>
     {% if user.is_authenticated %}
-    <form action="{% url 'add_comment' issue.id %}" method="POST">
-        {% bootstrap_form comment_form %}
-        {% csrf_token %}
-        <button type="submit" > Submit</button>
-    </form>
+
+        <form action="{% url 'add_comment' issue.id %}" method="POST">
+            {% bootstrap_form comment_form %}
+            {% csrf_token %}
+            <button type="submit" > Submit</button>
+        </form>
+
     {% endif %}
+
 {% endblock content %}

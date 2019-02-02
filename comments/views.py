@@ -16,6 +16,6 @@ def add_comment(request, issue_id):
             tmp.issue = get_object_or_404(IssueModel, pk = issue_id)
             tmp.save()
             messages.success(request, "Your comment has been added.")
-            #return redirect(reverse('home'))
+            #return redirect(reverse('issue_details',))
     
-    return redirect(reverse('home'))
+    return redirect(reverse('issue_details', args=[issue_id]))
