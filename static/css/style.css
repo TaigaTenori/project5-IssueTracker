@@ -56,3 +56,23 @@ a.issue_remove_link:hover {
 .rounded-right {
   border-radius: 0px 5px 5px 0px;
 }
+
+.messages span {
+  color: royalblue;
+}
+
+#ex4 .p1[data-count]:after{
+  position:absolute;
+  right:10%;
+
+  content: attr(data-count);
+  font-size:70%;
+  padding:.2em;
+  border-radius:50%;
+  line-height:1em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width: 1em;
+  //font-weight:bold;
+}

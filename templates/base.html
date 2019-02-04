@@ -33,9 +33,20 @@
                     {% if user.is_authenticated %}
                         <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
                         <li role="presentation"><a href="{% url 'profile' %}">Profile</a></li>
+                        <li id="ex4" role="presentation">
+                        <a href="{% url 'view_cart' %}">
+                        {% if product_count > 0 %}
+                            <span class="p1 fa-stack fa-1x has-badge" data-count="{{ product_count }}"> 
+                                <i class="p1 fa fa-shopping-cart fa-stack-1x xfa-inverse" data-count=""></i>
+                            </span>
+                        {% else %}
+                            <i class="fa fa-shopping-cart"></i>
+                        {% endif %}
+                        </a></li>
                     {% else %}
                         <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
                         <li role="presentation"><a href="{% url 'register' %}">Register</a></li>
+
                     {% endif %}
                 </ul> 
                 <br/>
@@ -44,12 +55,7 @@
                  <ul class="nav nav-pills">
                     {% if user.is_authenticated %}
                          <li role="presentation"><a href="{% url 'new_issue' %}">New Issue</a></li>
-                         <li role="presentation">
-                             <a href="{% url 'view_cart' %}">
-                             <i class="fa fa-shopping-cart"></i> Cart value: €{{ total }}  Product count: {{ product_count }} 
-                             </a>
-                        </li>
-                    {% endif %}
+                     {% endif %}
                 </ul>   
                 </div>
             
