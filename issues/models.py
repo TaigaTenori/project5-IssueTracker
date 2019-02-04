@@ -32,9 +32,12 @@ class IssueModel(models.Model):
     )
     progress = models.CharField(
         max_length = 12,
+        choices = progress_choices,
         default = 'NOT_STARTED'
     )
-    
+    def __str__(self):
+        return self.name
+        
 class UpvoteModel(models.Model):
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
     product = models.ForeignKey(IssueModel, null=False, on_delete=models.CASCADE)

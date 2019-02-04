@@ -28,7 +28,7 @@ def new_issue(request):
             new_author.author = request.user
             new_author.save()
             messages.success(request, "Your post has been added!")
-            redirect('home')
+            return redirect(reverse('issue_details', args=[new_author.id]))
         else:
             form.add_error(None, "You have to be authenticated to post new issues.")
     else:
