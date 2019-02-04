@@ -6,7 +6,7 @@
     <h2 style="margin-top: 0; margin-bottom: 7vh"> Detailed View</h2>
     <div class="panel panel-primary lighten">
         <div class="panel-heading" style="text-align: left">
-            {{ issue.name }} 
+            Progress: <span style="color: gold"> {{ issue.progress }}</span> <span style="font-weight: 600; font-size: 1.2em">{{ issue.name }}</span> 
             {% if not upvoted %}
                 {% if issue.type == 'FEATURE' %}
                     <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
@@ -24,12 +24,13 @@
     </div>
     <hr/>
     <h3> Comments </h3>
+    <hr/>
     {% for comment in comments %}
-        <div class="row rounded" style="margin-top: 10px">
+        <div class="row" style="margin-left: 0px; margin-right: 0px;margin-top: 10px">
         {% if forloop.counter|divisibleby:2 %}
-            <div class="col-md-3 bg-success">{{ comment.author }}</div><div class="bg-success text-left col-md-9"> {{ comment.text }}</div> 
+            <div class="rounded-left col-md-2 bg-success">{{ comment.created|date:'Y-m-d H:i' }} </div><div class="rounded-left col-md-2 bg-success"><a href="{% url 'request_username' comment.author %}">{{ comment.author }}</a></div><div class="rounded-right bg-success text-left col-md-8"> {{ comment.text }}</div> 
         {% else %}
-            <div class="col-md-3 bg-info">{{ comment.author }}</div><div class="text-left bg-info col-md-9"> {{ comment.text }}</div> 
+            <div class="rounded-left col-md-2 bg-info">{{ comment.created|date:'Y-m-d H:i' }} </div><div class="rounded-left col-md-2 bg-info"><a href="{% url 'request_username' comment.author %}">{{ comment.author }}</a></div><div class="rounded-right text-left bg-info col-md-8"> {{ comment.text }}</div> 
         {% endif %}
         </div>
     {% endfor %}

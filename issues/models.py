@@ -26,9 +26,9 @@ class IssueModel(models.Model):
     
 
     progress_choices = (
-        ('NOT_STARTED', 'Inactive'),
-        ('IN_PROGRESS', 'In progress'),
-        ('FINISHED', 'Done')
+        ('inactive', 'Inactive'),
+        ('in progress', 'In progress'),
+        ('Finished', 'Done')
     )
     progress = models.CharField(
         max_length = 12,
