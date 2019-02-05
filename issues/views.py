@@ -58,4 +58,4 @@ def add_bug_upvote(request, issue_id):
     upvote.save()
     
     messages.add_message(request, messages.INFO, 'The issue has been upvoted successfully.')
-    return redirect(reverse('home'))
+    return redirect(reverse('issue_details', args=[issue.id]))

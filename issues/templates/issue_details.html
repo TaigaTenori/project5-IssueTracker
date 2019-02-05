@@ -6,20 +6,31 @@
     <h2 style="margin-top: 0; margin-bottom: 7vh"> Detailed View</h2>
     <div class="panel panel-primary lighten">
         <div class="panel-heading" style="text-align: left">
-            Progress: <span style="color: gold"> {{ issue.progress }}</span> <span style="font-weight: 600; font-size: 1.2em">{{ issue.name }}</span> 
-            {% if not upvoted %}
-                {% if issue.type == 'FEATURE' %}
-                    <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
-                {% else %}
-                    <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
-                {% endif %}
-            {% endif %}
+            <div class="row">
+                <div class="col-md-9">Title: <span style="color: gold; font-weight: 600; font-size: 1.2em">{{ issue.name }}</span> </div>
+                <div class="col-md-3 text-right">Status: <span style="color: gold"> {{ issue.progress }}</span></div>
+            </div>
         </div>
         <div class="panel-body">
             {{ issue.body|linebreaks }}
         </div>
         <div class="panel-footer">
-            <p> Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></p>
+            <div class="row">
+                <div class="col-md-2">Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></div>
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
+                    Upvotes: {{ issue.upvotes }}
+                {% if not upvoted %}
+                    {% if issue.type == 'FEATURE' %}
+                        <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                    {% else %}
+                        <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                    {% endif %}
+                {% endif %}
+                
+                </div>
+            </div>
+            
         </div>
     </div>
     <hr/>

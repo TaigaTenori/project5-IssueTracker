@@ -37,7 +37,7 @@
                         <a href="{% url 'view_cart' %}">
                         {% if product_count > 0 %}
                             <span class="p1 fa-stack fa-1x has-badge" data-count="{{ product_count }}"> 
-                                <i class="p1 fa fa-shopping-cart fa-stack-1x xfa-inverse" data-count=""></i>
+                                <i class="p1 fa fa-shopping-cart fa-stack-1x xfa-inverse" data-count=" {{ product_count }}"></i>
                             </span>
                         {% else %}
                             <i class="fa fa-shopping-cart"></i>
