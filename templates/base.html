@@ -26,39 +26,57 @@
     <body>
         <div class="grid-container">
             <div class="grid-menu">
-                
-                <!-- left menu -->
-                <ul class="nav nav-pills">
-                    <li role="presentation"><a href="{% url 'home' %}">Home</a></li>
-                    {% if user.is_authenticated %}
-                        <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
-                        <li role="presentation"><a href="{% url 'profile' %}">Profile</a></li>
-                        <li id="ex4" role="presentation">
-                        <a href="{% url 'view_cart' %}">
-                        {% if product_count > 0 %}
-                            <span class="p1 fa-stack fa-1x has-badge" data-count="{{ product_count }}"> 
-                                <i class="p1 fa fa-shopping-cart fa-stack-1x xfa-inverse" data-count=" {{ product_count }}"></i>
-                            </span>
-                        {% else %}
-                            <i class="fa fa-shopping-cart"></i>
+                <nav class="navbar navbar-inverse">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                      </button>
+                      <a class="navbar-brand" href="#">Unicorn Attractor</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        
+                      <ul class="nav navbar-nav">
+                        {% if user.is_authenticated %}
+                            <li><button class="btn btn-danger navbar-btn">New Issue</button></li>
                         {% endif %}
-                        </a></li>
-                    {% else %}
-                        <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
-                        <li role="presentation"><a href="{% url 'register' %}">Register</a></li>
+                        <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                
+                        <li><a href="{% url 'profile' %}">My profile</a></li>
+                        <li><a href="#">Hot issues</a></li>
+                        <li><a href="">Statistics</a></li>
+                      </ul>
+                      
+                      <ul class="nav navbar-nav navbar-right">
+                        {% if not user.is_authenticated %}
+                            <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                
+                        {% else %}
+                        <li id="ex4" role="presentation">        <a href="{% url 'view_cart' %}">
+                                        {% if product_count > 0 %}
+                                            <span class="p1 fa-stack fa-1x has-badge" data-count="{{ product_count }}"> 
+                                                <i class="p1 fa fa-shopping-cart fa-stack-1x xfa-inverse" data-count=" {{ product_count }}"></i>
+                                            </span>
+                                        {% else %}
+                                            <i class="fa fa-shopping-cart"></i>
+                                        {% endif %}
+                                        </a></li>
+                            <li><p class="navbar-text"> Signed in as {{ user.username }} </p></li>
+                            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </nav>              
+                <!-- left menu -->
 
-                    {% endif %}
-                </ul> 
                 <br/>
                 <!-- right hand side menu -->
-                <div class="well well-sm bg-dark">
-                 <ul class="nav nav-pills">
-                    {% if user.is_authenticated %}
-                         <li role="presentation"><a href="{% url 'new_issue' %}">New Issue</a></li>
-                     {% endif %}
-                </ul>   
-                </div>
-            
+
             </div>
             
             <div class="grid-left"></div>

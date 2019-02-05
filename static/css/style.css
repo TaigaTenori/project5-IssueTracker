@@ -76,3 +76,12 @@ a.issue_remove_link:hover {
   min-width: 1em;
   //font-weight:bold;
 }
+.navbar-inverse {
+  background-color: #3f3838;
+  background-image: none;
+  background-repeat: no-repeat;
+  
+ }
+.navbar-inverse .navbar-brand {
+   color: gold;
+ }

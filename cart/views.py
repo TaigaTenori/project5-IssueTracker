@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from issues.models import IssueModel
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.utils.safestring import mark_safe
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ def add_upvote(request, issue_id, issue_name):
     
     request.session['cart'] = cart
     
-    messages.add_message(request, messages.INFO, 'This upvote has been added to your basket.')
+    messages.add_message(request, messages.INFO, mark_safe('This upvote (<a href="' + reverse('issue_details', args=[issue_id]) +'">go to issue</a>) has been added to your basket.'))
     
     return redirect(reverse('home'))
     
