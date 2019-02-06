@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html><html lang="en">
     <head>
         {% load static %}
         
@@ -40,12 +40,17 @@
                         
                       <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
-                            <li><button class="btn btn-danger navbar-btn">New Issue</button></li>
+                            <li>>
+                                <form style="display:inline" action="{% url 'new_issue' %}">
+                                    <button class="btn btn-danger navbar-btn">New Issue</button>
+                                </form>
+                            </li>
+                            <li><a href="{% url 'profile' user.username %}">My profile</a></li>
                         {% endif %}
-                        <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                
-                        <li><a href="{% url 'profile' %}">My profile</a></li>
-                        <li><a href="#">Hot issues</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <!--<li class="active"><a href="{% url 'home' %}">Home</a></li>-->
+                        
+                        <li><a href="{% url 'hot_issues' %}">Hot issues</a></li>
                         <li><a href="">Statistics</a></li>
                       </ul>
                       
@@ -79,7 +84,15 @@
 
             </div>
             
-            <div class="grid-left"></div>
+            <div class="grid-left">
+                <div class="social">
+                    <img class="side-social-logo" src=" {% static 'img/facebook.png' %}"/>
+                    <img class="side-social-logo" src=" {% static 'img/google.png' %}"/>
+                    <img class="side-social-logo" src=" {% static 'img/twitter.png' %}"/>
+                    <img class="side-social-logo" src=" {% static 'img/reddit.png' %}"/>
+                    <img class="side-social-logo" src=" {% static 'img/youtube.png' %}"/>
+                </div>
+            </div>
             <div class="grid-main">
                 {%if messages %}
                 <hr/>

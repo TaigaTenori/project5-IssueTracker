@@ -2,34 +2,34 @@
 
 {% block content %}
 
-    <div class="row " style="text-align: center; background-color: white;width: 100%">
+    <div class="row " style="text-align: center;">
         <div class="content " style=" margin: 0 auto; width: 70%">
-    {% for issue in issues %}
+            {% for issue in issues %}
+                
+                
+                <div class="panel panel-primary lighten">
         
+                    {% if issue.type == "BUG" %}
+                        <div class="panel-heading" style="background:#352f2f; text-align: left"><i class="fab fa-font-awesome"></i>
+                    {% else %}
+                        <div class="panel-heading" style="text-align: left"><i class="fab fa-angellist"></i>
+                    {% endif %}       
+                
         
-        <div class="panel panel-primary lighten">
-
-            {% if issue.type == "BUG" %}
-                <div class="panel-heading" style="background:#352f2f; text-align: left"><i class="fab fa-font-awesome"></i>
-            {% else %}
-                <div class="panel-heading" style="text-align: left"><i class="fab fa-angellist"></i>
-            {% endif %}       
+                    Progress: <span style="color: gold"> {{ issue.progress }}</span><span style="color: white;"> {{ issue.name }} </span> <span style="float: right;color: #77A4DE">Upvotes: {{ issue.upvotes }} </span>
+                </div>
+                <div class="panel-body">
+                    <p> {{ issue.body|linebreaks|truncatechars:50 }} </p>
+                    
+                </div>
+                <div class="panel-footer" style="text-align: left">
+                    <span style="margin-left:0">Posted by: <a href=" {% url 'profile' issue.author %} ">{{ issue.author }}</a></span>
+                    <span style="float:right;"> <a href=" {% url 'issue_details' issue.id %}">View Details </a></span>
+                </div>
+                
+                </div>
         
-
-            Progress: <span style="color: gold"> {{ issue.progress }}</span><span style="color: white;"> {{ issue.name }} </span> <span style="float: right;color: #77A4DE">Upvotes: {{ issue.upvotes }} </span>
+            {% endfor %}
         </div>
-        <div class="panel-body">
-            <p> {{ issue.body|linebreaks|truncatechars:50 }} {% lorem 1 p %} </p>
-            
-        </div>
-        <div class="panel-footer" style="text-align: left">
-            <span style="margin-left:0">Posted by: <a href=" {% url 'request_username' issue.author %} ">{{ issue.author }}</a></span>
-            <span style="float:right;"> <a href=" {% url 'issue_details' issue.id %}">View Details </a></span>
-        </div>
-        
-        </div>
-
-    {% endfor %}
-    </div>
     </div>
 {% endblock content %}

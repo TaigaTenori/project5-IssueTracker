@@ -8,6 +8,10 @@ from comments.forms import CommentForm
 from comments.models import Comment
 # Create your views here.
 
+def hot_issues(request):
+    issues = IssueModel.objects.all().order_by('-upvotes')
+    return render(request, 'issues.html', { 'issues':issues})
+
 def issues_list(request):
     users = User.objects.all()
     

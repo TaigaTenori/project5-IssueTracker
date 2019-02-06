@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from accounts.views import accounts_index, logout, login, register, accounts_profile
-from issues.views import issues_list, new_issue, issue_details, add_bug_upvote
+from issues.views import issues_list, new_issue, issue_details, add_bug_upvote, hot_issues
 from cart.views import add_upvote, view_cart, cart_remove
 from checkout.views import checkout
 from comments.views import add_comment
@@ -25,12 +25,12 @@ from comments.views import add_comment
 urlpatterns = [
     path('', accounts_index),
     path('admin/', admin.site.urls),
-    path('accounts/', accounts_index, name='profile'), #display profile after logging in?
-    path('accounts/profile/<request_username>', accounts_profile,  name='request_username'),
+    path('accounts/profile/<request_username>', accounts_profile,  name='profile'),
     path('accounts/logout', logout, name='logout'),
     path('accounts/login/', login, name='login'),
     path('accounts/register', register, name='register'),
     path('issues/', issues_list, name='home'),
+    path('issues/hot', hot_issues, name='hot_issues'),
     path('issues/new/', new_issue, name='new_issue'),
     path('issues/<pk>', issue_details, name='issue_details'),
     path('issues/add_bug_upvote/<issue_id>', add_bug_upvote, name='add_bug_upvote'),

@@ -9,20 +9,21 @@
   grid-template-areas:
     'header header header header header header'
     'left main main main right right'
-    'left footer footer footer footer footer';
+    'footer footer footer footer footer footer';
     
   grid-template-columns: 120px 2fr 2fr 2fr 1fr 2fr;
-  grid-template-rows: 20vh auto 10vh;
-  grid-gap: 5px;
+  grid-template-rows: 20vh auto minmax(10vh, 15vh);
+  grid-gap: 3px;
   
-  background-color: white;
-  padding: 10px;
+  background-color: black;
+  padding: 0;
   
-  height: 100vh;
+ 
 }
 
 .grid-container > div {
-  background-color: white;
+  
+  background-color: #3f3838;;
   text-align: center;
   padding: 20px 0;
 }
@@ -33,12 +34,15 @@
   
 }
 
-
+.grid-left {
+  background: url('/static/img/prism.png') 50% 0 repeat fixed;
+}
 
 body {
     left: 0 !important;
     top: 0 !important;
-
+    background-color: #3f3838;
+    
 }
 
 a.issue_remove_link {
@@ -85,3 +89,25 @@ a.issue_remove_link:hover {
 .navbar-inverse .navbar-brand {
    color: gold;
  }
+ 
+ hr {
+   color: black;
+ }
+ 
+ .panel-body {
+   
+   background-color: #bacbd8;
+ }
+ 
+.social .side-social-logo {
+   width: 60px;
+   display: inline-block;
+   padding-top: 20px;
+  z-index: 100;
+  -webkit-filter: brightness(50%); 
+ }
+ 
+.social .side-social-logo:hover {
+  width: 70px;
+  cursor: pointer;
+}
