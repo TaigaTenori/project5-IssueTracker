@@ -3,26 +3,32 @@
 {% block title %} Profile: {{ profile_user.username }} {% endblock %}
 {% block content %}
     
-        Name: {{ profile_user.username }}
+
         <br/>
-        Created date: {{ profile_user.date_joined }}
-        <h3> Issues created by {{ profile_user.username }}</h3>
-        <div style="width: 60%">
+        Joined on {{ profile_user.date_joined }}
+        <br/>
+        {{ profile_user.username }} has been a member for {{ profile_user.date_joined|timesince }} 
+        <h4> Issues created</h4>
+        <div class="row"><div class="col-md-2"></div>
+                <div class="col-md-8 small-text">
                 {% for issue in issues %}
-                        <p><a href="{% url 'issue_details' issue.id %}"> {{ issue.name }} </a></p>
+                        <a href="{% url 'issue_details' issue.id %}"> {{ issue.name }} </a>&nbsp;&nbsp;&nbsp;&nbsp;
                         
                 {% empty %}
                         <p> This user has not created any issues. </p>
                 {% endfor %}
+                </div><div class="col-md-2"></div>
         </div>
-        <hr/>
-        <h3> Issues upvoted by {{ profile_user.username }}</h3>
-        <div style="width: 60%">
+
+        <h4> Issues upvoted</h4>
+        <div class="row">
+                <div class="small-text col-md-offset-2 col-md-8 col-md-offset-2">
                 {% for upvote in upvotes %}
-                        <p><a href="{% url 'issue_details' upvote.product.id %}"> {{ upvote.product.name }} </a></p>
+                        <a href="{% url 'issue_details' upvote.product.id %}"> {{ upvote.product.name }} </a> &nbsp;&nbsp;&nbsp;&nbsp;
                         
                 {% empty %}
                         <p> This user hasn't upvoted anything. </p>
                 {% endfor %}
+                </div>
         </div>
 {% endblock %}

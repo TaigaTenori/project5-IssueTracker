@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load staticfiles%}
 {% block title %} {{ issue.name }} {% endblock title %}
 {% block content %}
     <div class="row">
@@ -9,24 +10,35 @@
             <div class="panel panel-primary lighten">
                 <div class="panel-heading" style="text-align: left">
                     <div class="row">
-                        <div class="col-md-9">Title: <span style="color: gold; font-weight: 600; font-size: 1.2em">{{ issue.name }}</span> </div>
-                        <div class="col-md-3 text-right">Status: <span style="color: gold"> {{ issue.progress }}</span></div>
+                        <div class="col-md-9">Title: <span style="color: #C8BFE7;">{{ issue.name }}</span> </div>
+                        <div class="col-md-3 text-right">Status: <span style="color: #C8BFE7"> {{ issue.progress }}</span></div>
                     </div>
                 </div>
                 <div class="panel-body">
-                    {{ issue.body|linebreaks }}
+                    <div class="row">
+                        <div class="col-md-2">
+                            {% with 'img/'|add:issue.type|add:'.png' as issue_type %}
+                                <img title="{{ issue.type|lower }}" src="{% static issue_type %}"/>
+                            {% endwith %}
+                        </div>
+                        <div class="col-md-10 text-left">
+                            {{ issue.body|linebreaks }}
+                        </div>
+                    </div>
+                    
+                    
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col-md-2">Posted by: <a href=" {% url 'profile' issue.author %} ">{{ issue.author }}</a></div>
-                        <div class="col-md-8"></div>
-                        <div class="col-md-2">
-                            Upvotes: {{ issue.upvotes }}
+                        <div class="col-md-4">Posted by: <a href=" {% url 'profile' issue.author %} ">{{ issue.author }}</a></div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right">
+                            Upvotes: {{ issue.upvotes }}&nbsp;&nbsp;
                             {% if not upvoted %}
                                 {% if issue.type == 'FEATURE' %}
-                                    <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                                    <span > <a title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
                                 {% else %}
-                                    <span style="float: right"> <a style="color: pink" title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                                    <span > <a title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
                                 {% endif %}
                             {% endif %}
                         
@@ -39,13 +51,28 @@
             <h3> Comments </h3>
             <hr/>
             {% for comment in comments %}
-                <div class="row" style="margin-left: 0px; margin-right: 0px;margin-top: 10px">
-                {% if forloop.counter|divisibleby:2 %}
-                    <div class="rounded-left col-md-2 bg-success">{{ comment.created|date:'Y-m-d H:i' }} </div><div class="col-md-2 bg-success"><a href="{% url 'profile' comment.author %}">{{ comment.author }}</a></div><div class="rounded-right bg-success text-left col-md-8"> {{ comment.text }}</div> 
-                {% else %}
-                    <div class="rounded-left col-md-2 bg-info">{{ comment.created|date:'Y-m-d H:i' }} </div><div class="col-md-2 bg-info"><a href="{% url 'profile' comment.author %}">{{ comment.author }}</a></div><div class="rounded-right text-left bg-info col-md-8"> {{ comment.text }}</div> 
-                {% endif %}
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="row">
+                           &nbsp;
+                        </div>
+                        <div class="row">
+                            <img class="avatar" src="{% static 'img/avatar-default.png' %}"/>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <p class="comment_head">
+                                <a href="{% url 'profile' comment.author %}">{{ comment.author }}</a> {{ comment.created|timesince }} ago.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="comment_body" >{{ comment.text }} </p>
+                        </div>
+                    </div>
                 </div>
+                <br/>
             {% endfor %}
             <hr/>
             {% if user.is_authenticated %}
@@ -58,6 +85,6 @@
         
             {% endif %}
         </div>
-        <div class="col-md-2"> fff</div>
+        <div class="col-md-2"> </div>
     </div>
 {% endblock content %}

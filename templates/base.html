@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         {% load static %}
         
@@ -6,6 +7,7 @@
             {% block title %}
             {% endblock %}
         </title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -15,10 +17,11 @@
         
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         {% block head_js %}
-        
+            <!-- using this to inject stripe js on the checkout page -->
         {% endblock head_js %}
     
     </head>
@@ -34,15 +37,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                       </button>
-                      <a class="navbar-brand" href="#">Unicorn Attractor</a>
+                      <a class="navbar-left"><img src="{% static 'img/unicorn-icon.png' %}"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         
                       <ul class="nav navbar-nav">
                         {% if user.is_authenticated %}
-                            <li>>
+                            <li>
                                 <form style="display:inline" action="{% url 'new_issue' %}">
-                                    <button class="btn btn-danger navbar-btn">New Issue</button>
+                                    <button class="btn btn-light navbar-btn">New Issue</button>
                                 </form>
                             </li>
                             <li><a href="{% url 'profile' user.username %}">My profile</a></li>
@@ -76,7 +79,8 @@
                       </ul>
                     </div>
                   </div>
-                </nav>              
+                </nav>     
+                
                 <!-- left menu -->
 
                 <br/>
@@ -92,16 +96,18 @@
                     <img class="side-social-logo" src=" {% static 'img/reddit.png' %}"/>
                     <img class="side-social-logo" src=" {% static 'img/youtube.png' %}"/>
                 </div>
+                
             </div>
+            
             <div class="grid-main">
                 {%if messages %}
-                <hr/>
+
                 <div class="messages">
                     {% for message in messages %}
                         <span> {{ message }} </span>
                     {% endfor %}
                 </div>
-                <hr/>
+
                 {% endif %}
                 <div class="content">
                     {% block content %}
@@ -110,13 +116,20 @@
                 
             </div>
             {% block latest_issues %}
-            <div class="grid-right"><h3>Latest issues</h3><br/>
-                {% for issue in latest_issues %}
-                    <p style="text-align: left; margin-left: 30%">
-                        <a href="{% url 'issue_details' issue.id %}">{{ issue.name|truncatechars:50 }}</a> 
-                    </p>
-                {% endfor %}
-            
+            <div class="grid-right" style="background: url('/static/img/unicorn.png');background-attachment: fixed;">
+                <div class="row"><div class="col-md-8 col-md-offset-1"><div id="latest_issues" class="panel panel-info">
+
+                    <div class="panel-body">
+                        <div class="panel-heading">Latest Issues</div>
+                        <ul class = "list-group">
+                            {% for issue in latest_issues %}
+                                <li class = "list-group-item">
+                                    <a href="{% url 'issue_details' issue.id %}">{{ issue.name|truncatechars:50 }}</a> 
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div></div></div><!-- end panel -->
             </div>
             {% endblock latest_issues %}
             <div class="grid-footer"></div>
