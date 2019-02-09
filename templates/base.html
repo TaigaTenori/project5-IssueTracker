@@ -7,6 +7,7 @@
             {% block title %}
             {% endblock %}
         </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <!-- Latest compiled and minified CSS -->
@@ -27,6 +28,13 @@
     </head>
     
     <body>
+        <script>
+            $(document).ready(function() {
+                {% block jquery %}
+                
+                {% endblock jquery %}
+            })
+        </script>
         <div class="grid-container">
             <div class="grid-menu">
                 <nav class="navbar navbar-inverse">
@@ -116,7 +124,7 @@
                 
             </div>
             {% block latest_issues %}
-            <div class="grid-right" style="background: url('/static/img/unicorn.png');background-attachment: fixed;">
+            <div class="grid-right">
                 <div class="row"><div class="col-md-8 col-md-offset-1"><div id="latest_issues" class="panel panel-info">
 
                     <div class="panel-body">

@@ -20,6 +20,10 @@
   color: white;
   font-family: 'Roboto', sans-serif;
 }
+.grid-right {
+  background: url('/static/img/unicorn.png');
+  background-attachment: fixed;
+}
 .avatar {
   width: 40px;
 }

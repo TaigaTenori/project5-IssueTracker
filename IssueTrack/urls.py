@@ -20,6 +20,7 @@ from issues.views import issues_list, new_issue, issue_details, add_bug_upvote, 
 from cart.views import add_upvote, view_cart, cart_remove
 from checkout.views import checkout
 from comments.views import add_comment
+from stats.views import get_data, stats
 
 
 urlpatterns = [
@@ -39,4 +40,6 @@ urlpatterns = [
     path('cart/remove/<issue_id>', cart_remove, name='cart_remove'),
     path('checkout/', checkout, name = 'checkout'),
     path('comments/add_comment/<issue_id>', add_comment, name = 'add_comment'),
+    path('api/data', get_data, name= 'api-data'),
+    path('stats/', stats, name='stats')
 ]
