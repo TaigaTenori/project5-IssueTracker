@@ -33,7 +33,7 @@ class IssueModel(models.Model):
     progress = models.CharField(
         max_length = 12,
         choices = progress_choices,
-        default = 'NOT_STARTED'
+        default = 'inactive'
     )
     def __str__(self):
         return self.name

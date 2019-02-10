@@ -40,6 +40,6 @@ urlpatterns = [
     path('cart/remove/<issue_id>', cart_remove, name='cart_remove'),
     path('checkout/', checkout, name = 'checkout'),
     path('comments/add_comment/<issue_id>', add_comment, name = 'add_comment'),
-    path('api/data', get_data, name= 'api-data'),
+    path('api/data/<var>', get_data, name= 'api-data'),
     path('stats/', stats, name='stats')
 ]

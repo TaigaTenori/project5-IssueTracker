@@ -7,6 +7,8 @@
             {% block title %}
             {% endblock %}
         </title>
+        {% block head %}
+        {% endblock head %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -62,7 +64,7 @@
                         <!--<li class="active"><a href="{% url 'home' %}">Home</a></li>-->
                         
                         <li><a href="{% url 'hot_issues' %}">Hot issues</a></li>
-                        <li><a href="">Statistics</a></li>
+                        <li><a href="{% url 'stats' %}">Statistics</a></li>
                       </ul>
                       
                       <ul class="nav navbar-nav navbar-right">

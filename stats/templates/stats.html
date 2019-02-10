@@ -1,77 +1,12 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block head %}
+    <script type="text/javascript" src="{% static 'js/graphs.js' %}"></script>
+{% endblock head %}
 <script>
-{% block jquery %}
-
-var endpoint = '/api/data'
-
-$.ajax({
-    method: 'GET',
-    url: endpoint,
-    success: function(response_data){
-        displayChart(response_data);
-    },
-    error: function(data) {
-        console.log('error')
-        console.log(data)
-        
-    }
-})
-
-function displayChart(response_data){
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['This month'],
-            datasets: [
-                
-                {
-                    label: '# of Issues',
-                    
-                    data: [response_data.data[0]],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    borderWidth: 1
-                },
-                {
-                    label: '# of Issues Resolved',
-                    data: [1],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: "# of Issues being worked on",
-                    data: [3],
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1
-                }
-                
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                     gridLines: {
-                        offsetGridLines: false
-                    },
-                    ticks: {
-                        beginAtZero:false
-                    },
-
-                }],
-                xAxes: [{
-                    stacked: false
-            }],
-            }
-        }
-    });  
-}
-
-
-{% endblock jquery %}
+    {% block jquery %}
+        generateGraphs();
+    {% endblock jquery %}
 </script>
 
 {% block content %}
@@ -79,11 +14,12 @@ function displayChart(response_data){
 STATS
 <div class="row">
     <div class="col-sm-6">
-        This Month
-        <canvas id="myChart" width="200" height="100"></canvas>
+        Last 30 days
+        <canvas id="myChartMonth" width="200" height="100"></canvas>
     </div>
     <div class="col-sm-6">
-        This Week
+        Last 7 days
+        <canvas id="myChartWeek" width="200" height="100"></canvas>
     </div>
 </div>
 {% endblock content %}
