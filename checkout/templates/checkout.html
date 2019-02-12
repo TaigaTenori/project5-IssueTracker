@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load static %}
 {% load bootstrap3 %}
+{% block title %} Checkout {% endblock title %}
 {% block head_js %}
     <script type="text/javascript" src="https://js.stripe.com/v2"></script>
     <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
@@ -16,21 +17,38 @@
 
 
 
-<div class="row row-flex">
-    
-    {% for item, name in cart.items %}
-        <p> {{ name }} <span style="color: green"> 5 eur </span></p>
-    {% endfor %}
-    
+
+<div class="panel panel-primary">
+    <div class="panel-heading"> items in your basket </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            {% for item, details in cart.items %}
+                <div class="row">
+                    <div class="col-md-8 col-xs-8">
+                        <li class="list-group-item"> {{ details.0 }}</li>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <li class="list-group-item"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{ details.1 }} </li>
+                    </div>
+                </div>
+            {% empty %}
+                <li class="list-group-item"> Your basket is empty </li>
+            {% endfor %}                    
+        </ul>
+    </div>
 </div>
 
 {% if total > 0 %}
-    <div>
-        <p>Total: <span class="glyphicon glyphicon-euro" aria-hidden="true"> {{ total }} </span></p>
+    <div style="margin: 20px">
+        Total: <span class="glyphicon glyphicon-euro" aria-hidden="true"> {{ total }} </span>
         
     </div>
+    <div class="messages">
+         To checkout using a dummy credit card, enter 4242424242424242 as a credit card number, 123 as a CVV and select any expiration date in the future.       
+    </div>
+
     <form role="form" method="Post" id="payment-form" action="{% url 'checkout' %}">
-        <legend> Payment Details</legend>
+        <legend class="form-legend"> Payment Details</legend>
         <div id="credit-card-errors" style="">
             <div class="alert-message block-message error" id="stripe-error-message">
                 

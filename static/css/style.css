@@ -39,6 +39,10 @@
  .messages {
     width: 70vw !important;
   }
+  .img-issue-type {
+    width:30px;
+    margin-bottom: 10px;
+  }
 }
 
 
@@ -158,6 +162,12 @@ a:hover {
  hr {
     border-top: 1px solid #cac1c1;
  }
+ .form-legend {
+   border: none;
+   margin-bottom: 20px;
+   margin-top: 20px;
+  color: #cac1c1;
+ }
  .panel-heading.bug-border {
     border-bottom-color: gold;
     border-bottom-width: medium;
@@ -177,6 +187,8 @@ a:hover {
  }
  .panel-primary {
    border-color:black;
+   margin-left: 20px;
+   margin-right: 20px;
  }
 .panel-heading {
   border-bottom-width: medium;

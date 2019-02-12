@@ -6,14 +6,14 @@ from django.utils.safestring import mark_safe
 
 # Create your views here.
 
-def add_upvote(request, issue_id, issue_name):
+def add_upvote(request, issue_id, issue_name, issue_price):
     cart = request.session.get('cart', {})
     
     if issue_id in cart:
         messages.add_message(request, messages.ERROR, "This upvote is already in your basket.")
         return redirect(reverse('view_cart'))
     
-    cart[issue_id] = issue_name
+    cart[issue_id] = (issue_name, issue_price)
     
     request.session['cart'] = cart
     

@@ -3,8 +3,10 @@
 {% block title %} Cart {% endblock %}
 {% block content %}
     <h3> Cart contents:</h3>
-    {% for issue_id, issue_name in cart.items %}
-        <p> <a href=" {% url 'issue_details' issue_id %}"> {{ issue_name }} </a> - [<a class="issue_remove_link" href=" {% url 'cart_remove' issue_id %}"> remove</a> ]</p>
+    {% for issue_id, details in cart.items %}
+        <p> <a href=" {% url 'issue_details' issue_id %}"> {{ details.0 }} </a> - [<a class="issue_remove_link" href=" {% url 'cart_remove' issue_id %}"> remove</a> ]
+        <span class="glyphicon glyphicon-euro" aria-hidden="true"> {{ details.1 }} </span>
+        </p>
         
         
     {% empty %}

@@ -10,15 +10,15 @@
             <div class="panel panel-primary lighten">
                 <div class="panel-heading" style="text-align: left">
                     <div class="row">
-                        <div class="col-md-9">Title: <span style="color: #C8BFE7;">{{ issue.name }}</span> </div>
-                        <div class="col-md-3 text-right">Status: <span style="color: #C8BFE7"> {{ issue.progress }}</span></div>
+                        <div class="col-md-9 col-xs-9">Title: <span style="color: #C8BFE7;">{{ issue.name }}</span> </div>
+                        <div class="col-md-3 col-xs-3 text-right"> {{ issue.progress }}</div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-2">
                             {% with 'img/'|add:issue.type|add:'.png' as issue_type %}
-                                <img title="{{ issue.type|lower }}" src="{% static issue_type %}"/>
+                                <img class="img-issue-type" title="{{ issue.type|lower }}" src="{% static issue_type %}"/>
                             {% endwith %}
                         </div>
                         <div class="col-md-10 text-left">
@@ -30,15 +30,17 @@
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col-md-4">Posted by: <a href=" {% url 'profile' issue.author %} ">{{ issue.author }}</a></div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 text-right">
+                        <div class="col-md-4 col-xs-6">
+                            <i class="fas fa-user"></i> &nbsp;<a href=" {% url 'profile' issue.author %} ">{{ issue.author|truncatechars:15 }}</a>
+                        </div>
+                        <div class="col-md-4 hidden-xs"></div>
+                        <div class="col-md-4 col-xs-6 text-right">
                             Upvotes: {{ issue.upvotes }}&nbsp;&nbsp;
                             {% if not upvoted %}
                                 {% if issue.type == 'FEATURE' %}
-                                    <span > <a title="upvote" href=" {% url 'add_upvote' issue.id issue.name %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                                    <a title="upvote" href=" {% url 'add_upvote' issue.id issue.name issue.price%}"> <i class="fas fa-thumbs-up"></i> </a>
                                 {% else %}
-                                    <span > <a title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a> </span>
+                                    <a title="upvote" href=" {% url 'add_bug_upvote' issue.id %}"> <i class="fas fa-thumbs-up"></i> </a>
                                 {% endif %}
                             {% endif %}
                         
@@ -80,7 +82,7 @@
                 <form action="{% url 'add_comment' issue.id %}" method="POST">
                     {% bootstrap_form comment_form %}
                     {% csrf_token %}
-                    <button type="submit" > Submit</button>
+                    <button class="btn btn-primary" type="submit" > Submit</button>
                 </form>
         
             {% endif %}
