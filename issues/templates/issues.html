@@ -9,22 +9,40 @@
                 
                 <div class="panel panel-primary">
                     <div class="panel-heading" style="background-color: black">
-                        {% if issue.type == "BUG" %}
-                            <img class="list-icon" src=" {% static 'img/BUG.png' %} "/>
-                        {% else %}
-                            <img class="list-icon" src=" {% static 'img/FEATURE.png' %} "/>
-                        {% endif %}       
-                    
-        
-                        Progress: <span style="color: #C8BFE7"> {{ issue.progress }}</span><span style="color: white;"> {{ issue.name }} </span> <span style="float: right;color: #77A4DE">Upvotes: {{ issue.upvotes }} </span>
+      
+                        <div class="row">
+
+                            <div class="col-sm-3 hidden-xs">
+                                {% if issue.type == "BUG" %}
+                                    <img class="list-icon " src=" {% static 'img/BUG.png' %} "/>
+                                {% else %}
+                                    <img class="list-icon " src=" {% static 'img/FEATURE.png' %} "/>
+                                {% endif %} 
+                                
+                                <span style="color: #C8BFE7"> {{ issue.progress }}</span>
+                            </div>
+                            <div class="col-sm-6 col-xs-9">
+                                {{ issue.name }}
+                            </div>
+                            <div class="col-sm-3 col-xs-3 text-right">
+                                <i class="far fa-heart"></i> {{ issue.upvotes }}
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <p> {{ issue.body|linebreaks|truncatechars:50 }} </p>
                         
                     </div>
                     <div class="panel-footer">
-                        <span style="margin-left:0">Posted by: <a href=" {% url 'profile' issue.author %} ">{{ issue.author }}</a></span>
-                        <span style="float:right;"> <a href=" {% url 'issue_details' issue.id %}">View Details </a></span>
+                        <div class="row">
+                            <div class="col-sm-8 col-xs-8">
+                                <i class="fas fa-user"></i> &nbsp;<a href=" {% url 'profile' issue.author %} ">{{ issue.author|truncatechars:15 }}</a>
+                            </div>
+                            <div class="col-sm-4 col-xs-4 text-right">
+                                <a href=" {% url 'issue_details' issue.id %}">View</a>
+                            </div>
+
+                        </div>
                     </div>
                 
                 </div>

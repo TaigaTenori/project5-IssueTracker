@@ -49,25 +49,25 @@
             </div>
             <hr/>
             <h3> Comments </h3>
-            <hr/>
+
             {% for comment in comments %}
                 <div class="row">
                     <div class="col-md-2">
-                        <div class="row">
+                        <div>
                            &nbsp;
                         </div>
-                        <div class="row">
+                        <div>
                             <img class="avatar" src="{% static 'img/avatar-default.png' %}"/>
                         </div>
                         
                     </div>
                     <div class="col-md-10">
-                        <div class="row">
+                        <div>
                             <p class="comment_head">
                                 <a href="{% url 'profile' comment.author %}">{{ comment.author }}</a> {{ comment.created|timesince }} ago.
                             </p>
                         </div>
-                        <div class="row">
+                        <div>
                             <p class="comment_body" >{{ comment.text }} </p>
                         </div>
                     </div>

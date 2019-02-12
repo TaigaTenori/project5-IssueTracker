@@ -35,8 +35,10 @@
   margin-top: 7px;
   margin-left: 10px;
   margin-bottom: 3px;
-}  
-  
+  }  
+ .messages {
+    width: 70vw !important;
+  }
 }
 
 
@@ -154,7 +156,7 @@ a:hover {
  }
  
  hr {
-   color: black;
+    border-top: 1px solid #cac1c1;
  }
  .panel-heading.bug-border {
     border-bottom-color: gold;
@@ -171,6 +173,7 @@ a:hover {
  }
  .form-control {
    background-color: #3f3838;
+   color: #EFE4B0;
  }
  .panel-primary {
    border-color:black;

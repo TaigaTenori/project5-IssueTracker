@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load static from staticfiles %}
+{% load staticfiles %}
+{% load static %}
 {% load bootstrap3 %}
 {% block head_js %}
     <script type="text/javascript" src="https://js.stripe.com/v2"></script>
@@ -14,7 +15,7 @@
 {% block content %}
 
 
-{% block latest_issues %}{% endblock latest_issues %}
+
 <div class="row row-flex">
     
     {% for item, name in cart.items %}
@@ -24,8 +25,8 @@
 </div>
 
 {% if total > 0 %}
-    <div class="row">
-        <p>Total: <span class="glyphicon glyphicon-euro" aira-hidden="true"> {{ total }} </span></p>
+    <div>
+        <p>Total: <span class="glyphicon glyphicon-euro" aria-hidden="true"> {{ total }} </span></p>
         
     </div>
     <form role="form" method="Post" id="payment-form" action="{% url 'checkout' %}">
@@ -44,11 +45,11 @@
             
         </div>
         <div class="form-group col-md-12">
-            <input class="btn btn-primary" id="submit_payment_btn" name="commit" type='submit' value="Submit"
+            <input class="btn btn-primary" id="submit_payment_btn" name="commit" type='submit' value="Pay now">
         </div>
         {% csrf_token %}
     </form>
 {% else %}
     Add upvotes to feature requests to your basket before checking out.
 {% endif %}
-{% endblock %}
+{% endblock content %}
