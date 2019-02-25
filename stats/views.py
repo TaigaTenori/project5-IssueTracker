@@ -24,5 +24,5 @@ def get_data(request, var):
     return JsonResponse(data, safe=False)
     
 def stats(request):
-    
-    return render(request, 'stats.html')
+    issues = IssueModel.objects.filter(progress__exact="in progress")
+    return render(request, 'stats.html', {'issues': issues })

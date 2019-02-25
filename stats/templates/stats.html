@@ -24,4 +24,14 @@ STATS
         <canvas id="myChartWeek" width="200" height="100"></canvas>
     </div>
 </div>
+Issues currently worked on
+<div class="row">
+    <div class=" text-left col-xs-offset-2 col-xs-8 col-xs-offset-2">
+       {% for issue in issues %}
+            <p>
+                <a href="{% url 'issue_details' issue.id %}">{{ issue.name }}</a>
+            </p>
+       {% endfor %}
+    </div>
+</div>
 {% endblock content %}
